@@ -1,7 +1,9 @@
 
-scene1Time = 7  --7
+scene1Time = 7 --7
 scence2Time = 5 --5
 scene3Time = 5   --5
+scene4Time = 5  --6
+
 
 function Scene1()
 
@@ -256,7 +258,7 @@ function Scene3()
     SpawnGameObject("Asteroid","ExplodeSphere",4)
     BindGameObject("ExplodeSphere")
     MoveWithTime(-40.2,0.25,1, 0)
-    ScaleWithTime(.1,.1,.1,1)
+    ScaleWithTime(.4,.4,.4,4)
 
     EndCommandGroup("Collision1")
 
@@ -354,16 +356,71 @@ function Scene4()
     BindGameObject("Fighter43")
     BeginCommandGroup("FighterDown", "Parallel").SetCollisionCondition("Asteroid43")
     WaitForSeconds(0.1)
-    MoveWithTime(-61.8,-0.9,1.5, 4)    
-    RotateWithTime(10,10,360, 4)
+    MoveWithTime(-59.75,0.17,2.5, 2)    
+    RotateWithTime(10,10,360, 2)
 
     EndCommandGroup("FighterDown")
     
 
 end
 
+function Scene5()
+
+    BeginCommandGroup("Init4", "Parallel")
+
+    WaitForSeconds(scene1Time + scence2Time + scene3Time + scene4Time)
+
+    BindGameObject("Camera")
+    MoveWithTime(-79.75,0.3,2.2,0)
+    RotateWithTime(-12,9,0,0)
+
+    EndCommandGroup("Init4")
+
+
+    BeginCommandGroup("AsteroidScene5", "Parallel")
+
+    WaitForSeconds(scene1Time + scence2Time + scene3Time + scene4Time)
+
+    SpawnGameObject("Asteroid","Asteroid51",1)
+    BindGameObject("Asteroid51")
+
+    MoveWithTime(-80,0,2,0)
+    
+    EndCommandGroup("AsteroidScene5")
+
+
+
+    BeginCommandGroup("FighterScene5", "Parallel")
+
+    WaitForSeconds(scene1Time + scence2Time + scene3Time + scene4Time)
+
+    WaitForSeconds(0.1)
+    SpawnGameObject("Fighter","Fighter51");
+    BindGameObject("Fighter51")
+    MoveWithTime(-79.75,0.3,2.21,0)
+
+    WaitForSeconds(0.1)
+    MoveWithTime(-79.6,0.1,1.6,2)
+    RotateWithTime(0,0,360,2)
+
+    WaitForSeconds(2)
+
+    ScaleWithTime(0,0,0,0.1)
+    SpawnGameObject("Asteroid","ExplodeSphere2",4)
+    BindGameObject("ExplodeSphere2")
+
+    MoveWithTime(-79.6,0.1,1.6,0)
+    ScaleWithTime(0.25,0.25,0.25,0.7)
+
+
+    EndCommandGroup("FighterScene5")
+    
+
+
+end
 
 Scene1()
 Scene2()
 Scene3()
 Scene4()
+Scene5()
