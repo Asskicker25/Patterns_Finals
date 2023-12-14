@@ -299,14 +299,31 @@ function Scene4()
     BindGameObject("Asteroid42")
     MoveWithTime(-64,-1.0,0,0)
 
+    SpawnGameObject("Asteroid","Asteroid43",0)
+    BindGameObject("Asteroid43")
+    MoveWithTime(-64,-1.0,0,0)
+    ScaleWithTime(0.0001,0.0001,0.0001,0)
+
+
     WaitForSeconds(0.1)
 
+    BindGameObject("Asteroid43")
+    MoveWithTime(-60.9,-0.61,0,2.91)
+
+
+    BindGameObject("Asteroid42")
     MoveWithTime(-61.7,-0.3,0, 1.7)
     RotateWithTime(90,-360,0,10)
+
 
     WaitForSeconds(1.7)
 
     MoveWithTime(-61.7,1,0, 3)
+
+    WaitForSeconds(1.25)
+    BindGameObject("Asteroid43")
+    MoveWithTime(-53.9,-0.61,0,5)
+
 
     EndCommandGroup("Falcon4")
 
@@ -326,11 +343,23 @@ function Scene4()
     MoveWithTime(-61,-0.8,0,0)
     FollowObject("Falcon",6).SetFollowOffset(-0.5,-0.5,-0.5).SetFollowDistance(0.5).SetMaxSpeed(20)
 
+    SpawnGameObject("Fighter","Fighter43");
+    BindGameObject("Fighter43")
+    MoveWithTime(-61,-0.8,-1,0)
+    FollowObject("Falcon",5.5).SetFollowOffset(-0.7,-0.6,-1.2).SetFollowDistance(1).SetMaxSpeed(20)
+
     
     EndCommandGroup("Fighters4")
 
-    
+    BindGameObject("Fighter43")
+    BeginCommandGroup("FighterDown", "Parallel").SetCollisionCondition("Asteroid43")
+    BindGameObject("Fighter43")
+    WaitForSeconds(0.1)
+    MoveWithTime(-61.8,-0.9,1.5, 2)    
+    RotateWithTime(10,10,360, 2)
 
+    EndCommandGroup("FighterDown")
+    
 
 end
 
