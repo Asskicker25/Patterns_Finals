@@ -21,6 +21,7 @@ public:
 	void SetAccelerationRange(const float& range);
 	void SetDeaccelerationRange(const float& range);
 	void SetSimpleFollow(bool state);
+	void SetFollowAxis(const glm::vec3& followAxis);
 
 private:
 
@@ -44,6 +45,7 @@ private:
 	glm::vec3 startPos = glm::vec3(0);
 	glm::vec3 targetPos = glm::vec3(0);
 	glm::vec3 startDir = glm::vec3(0);
+	glm::vec3 followAxis = glm::vec3(1);
 
 	GameObject* followObject;
 	GameObject* targetObject;

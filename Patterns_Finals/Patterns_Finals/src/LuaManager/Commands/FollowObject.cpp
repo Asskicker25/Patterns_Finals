@@ -50,7 +50,9 @@ void FollowObject::Update()
 	diff = targetPos - startPos;
 	sqDist = glm::dot(diff, diff);
 
-
+	targetPos.x = followAxis.x == 1 ? targetPos.x : startPos.x;
+	targetPos.y = followAxis.y == 1 ? targetPos.y : startPos.y;
+	targetPos.z = followAxis.z == 1 ? targetPos.z : startPos.z;
 
 	float remapedValue;
 	if (sqAcceleration != 0 && sqDist >= sqAcceleration)
@@ -71,6 +73,8 @@ void FollowObject::Update()
 	}
 
 	timeStep = CalculateTForSpeed(timeStep, deltaTime, maxSpeed * remapedValue);
+
+
 
 	followObject->GetTransform()->SetPosition(
 		Lerp(startPos, targetPos, timeStep)
@@ -119,5 +123,10 @@ void FollowObject::SetDeaccelerationRange(const float& range)
 void FollowObject::SetSimpleFollow(bool state)
 {
 	simpleFollow = state;
+}
+
+void FollowObject::SetFollowAxis(const glm::vec3& followAxis)
+{
+	this->followAxis = followAxis;
 }
 

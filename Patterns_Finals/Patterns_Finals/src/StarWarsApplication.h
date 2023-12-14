@@ -12,6 +12,13 @@ public:
 
 private:
 	// Inherited via ApplicationWindow
+	bool isFreeCam = false;
+
+	glm::vec3 lastCameraPos = glm::vec3(0);
+	glm::vec3 lastCameraRot = glm::vec3(0);
+
+	void ToggleFreeCam();
+
 	void SetUp() override;
 	void PreRender() override;
 	void PostRender() override;

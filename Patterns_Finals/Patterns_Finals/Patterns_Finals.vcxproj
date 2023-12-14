@@ -137,6 +137,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Asteroid\AsteroidManager.cpp" />
+    <ClCompile Include="src\Asteroid\AsteroidFactory.cpp" />
+    <ClCompile Include="src\Asteroid\Asteroid.cpp" />
     <ClCompile Include="src\Camera\CameraObject.cpp" />
     <ClCompile Include="src\Falcon\Falcon.cpp" />
     <ClCompile Include="src\ApplicationMain.cpp" />
@@ -146,7 +149,7 @@
     <ClCompile Include="src\InputManager\InputManager.cpp" />
     <ClCompile Include="src\LuaManager\CommandManager\CommandGroup.cpp" />
     <ClCompile Include="src\LuaManager\CommandManager\CommandManager.cpp" />
-    <ClCompile Include="src\LuaManager\Commands\CreateCar.cpp" />
+    <ClCompile Include="src\LuaManager\Commands\CreateGameObject.cpp" />
     <ClCompile Include="src\LuaManager\Commands\FollowCurveWithTime.cpp" />
     <ClCompile Include="src\LuaManager\Commands\FollowObject.cpp" />
     <ClCompile Include="src\LuaManager\Commands\LookAt.cpp" />
@@ -161,6 +164,9 @@
     <ClCompile Include="src\Utilities\RendererInstance.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Asteroid\AsteroidManager.h" />
+    <ClInclude Include="src\Asteroid\AsteroidFactory.h" />
+    <ClInclude Include="src\Asteroid\Asteroid.h" />
     <ClInclude Include="src\Camera\CameraObject.h" />
     <ClInclude Include="src\Falcon\Falcon.h" />
     <ClInclude Include="src\EntityManager\Entity.h" />
@@ -172,7 +178,7 @@
     <ClInclude Include="src\LuaManager\CommandManager\CommandGroup.h" />
     <ClInclude Include="src\LuaManager\CommandManager\CommandManager.h" />
     <ClInclude Include="src\LuaManager\CommandManager\EaseCommand.h" />
-    <ClInclude Include="src\LuaManager\Commands\CreateCar.h" />
+    <ClInclude Include="src\LuaManager\Commands\CreateGameObject.h" />
     <ClInclude Include="src\LuaManager\Commands\FollowCurveWithTime.h" />
     <ClInclude Include="src\LuaManager\Commands\FollowObject.h" />
     <ClInclude Include="src\LuaManager\Commands\LookAt.h" />

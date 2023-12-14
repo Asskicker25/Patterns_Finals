@@ -39,7 +39,7 @@
     <ClCompile Include="src\LuaManager\CommandManager\CommandManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\LuaManager\Commands\CreateCar.cpp">
+    <ClCompile Include="src\LuaManager\Commands\CreateGameObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\LuaManager\Commands\FollowCurveWithTime.cpp">
@@ -81,6 +81,15 @@
     <ClCompile Include="src\Camera\CameraObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Asteroid\Asteroid.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Asteroid\AsteroidFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Asteroid\AsteroidManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\StarWarsApplication.h">
@@ -113,7 +122,7 @@
     <ClInclude Include="src\LuaManager\CommandManager\EaseCommand.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\LuaManager\Commands\CreateCar.h">
+    <ClInclude Include="src\LuaManager\Commands\CreateGameObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\LuaManager\Commands\FollowCurveWithTime.h">
@@ -168,6 +177,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Camera\CameraObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Asteroid\Asteroid.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Asteroid\AsteroidFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Asteroid\AsteroidManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

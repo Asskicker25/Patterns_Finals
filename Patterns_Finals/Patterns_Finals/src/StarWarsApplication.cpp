@@ -6,11 +6,15 @@
 #include "Camera/CameraObject.h"
 #include "LuaManager/CommandManager/CommandManager.h"
 
+
 void StarWarsApplication::SetUp()
 {
 	physicsEngine.fixedStepTime = 0.01f;
 	physicsEngine.gravity.y = 0;
 	moveSpeed = 1;
+
+	stopKeyCallback = true;
+	stopMouseCallback = true;
 
 	RendererInstance::GetInstance().SetRenderer(&renderer);
 
@@ -92,8 +96,39 @@ void StarWarsApplication::ProcessInput(GLFWwindow* window)
 
 void StarWarsApplication::KeyCallBack(GLFWwindow* window, int& key, int& scancode, int& action, int& mods)
 {
+	if (action == GLFW_PRESS)
+	{
+		if (key == GLFW_KEY_SPACE)
+		{
+			CommandManager::GetInstance().TogglePaused();
+			ToggleFreeCam();
+		}
+
+	}
 }
 
 void StarWarsApplication::MouseButtonCallback(GLFWwindow* window, int& button, int& action, int& mods)
 {
+}
+
+
+void StarWarsApplication::ToggleFreeCam()
+{
+	isFreeCam = !isFreeCam;
+
+	stopKeyCallback = !isFreeCam;
+	stopMouseCallback = !isFreeCam;
+
+	if (isFreeCam)
+	{
+		lastCameraPos = camera->transform.position;
+		lastCameraRot = camera->transform.rotation;
+	}
+	else
+	{
+		camera->transform.SetPosition(lastCameraPos);
+		camera->transform.SetRotation(lastCameraRot);
+	}
+
+	
 }

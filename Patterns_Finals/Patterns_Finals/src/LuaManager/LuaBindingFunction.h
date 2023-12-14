@@ -216,6 +216,29 @@ static int SetFollowOffset(lua_State* luaState)
 	return 0;
 
 }
+static int SetFollowAxis(lua_State* luaState)
+{
+	FollowObject* command = dynamic_cast<FollowObject*>
+		(CommandManager::GetInstance().currentCommand);
+
+	int argCount = lua_gettop(luaState);
+
+	if (argCount >= 3)
+	{
+		glm::vec3 axis;
+
+		axis.x = luaL_checknumber(luaState, 1);
+		axis.y = luaL_checknumber(luaState, 2);
+		axis.z = luaL_checknumber(luaState, 3);
+
+		command->SetFollowAxis(axis);
+
+		GetFollowObjectTable(luaState);
+		return 1;
+	}
+	return 0;
+
+}
 static int SetAccelerationRange(lua_State* luaState)
 {
 	FollowObject* command = dynamic_cast<FollowObject*>
@@ -341,6 +364,9 @@ void GetFollowObjectTable(lua_State* luaState)
 
 	lua_pushcfunction(luaState, SetSimpleFollow);
 	lua_setfield(luaState, -2, "SetSimpleFollow");
+
+	lua_pushcfunction(luaState, SetFollowAxis);
+	lua_setfield(luaState, -2, "SetFollowAxis");
 
 	lua_pushcfunction(luaState, SetAccelerationRange);
 	lua_setfield(luaState, -2, "SetAccelerationRange");

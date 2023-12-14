@@ -23,10 +23,14 @@ public:
 	BaseCommand* currentCommand;
 	CommandGroup* currentCommandGroup = nullptr;
 
+	void TogglePaused();
+
 
 private:
 
 	int currentGroupIndex = 0;
+
+	bool isPaused;
 
 	GameObject* currentGameObject = nullptr;
 

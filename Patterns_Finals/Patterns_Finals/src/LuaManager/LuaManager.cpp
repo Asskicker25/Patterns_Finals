@@ -6,11 +6,11 @@
 #include "Commands/RotateWithTime.h"
 #include "Commands/WaitForSeconds.h"
 #include "Commands/FollowCurveWithTime.h"
-#include "Commands/CreateCar.h"
+#include "Commands/CreateGameObject.h"
 #include "Commands/FollowObject.h"
 #include "Commands/LookAt.h"
 #include "LuaBindingFunction.h"
-
+#include "../Asteroid/AsteroidManager.h"
 
 LuaManager::LuaManager()
 {
@@ -308,35 +308,52 @@ void LuaManager::SetBindingsToState(lua_State* luaState)
 
 #pragma endregion
 
-//
-//#pragma region SpawnCar
-//
-//	lua_pushcfunction(luaState, [](lua_State* luaState)->int
-//		{
-//			int argCount = lua_gettop(luaState);
-//
-//			if (argCount >= 2)
-//			{
-//				std::string carId = luaL_checkstring(luaState, 1);
-//				int carType = luaL_checknumber(luaState, 2);
-//
-//				CarManager::GetInstance().SpawnCar(carId, carType);
-//
-//				CreateCar* command = new CreateCar(carId,carType);
-//
-//				CommandManager::GetInstance().AddCommand(command);
-//
-//				return 0;
-//
-//			}
-//			return 0;
-//		});
-//
-//	lua_setglobal(luaState, "SpawnCar");
-//
-//
-//#pragma endregion
-//	
+
+#pragma region SpawnGameObject
+
+	lua_pushcfunction(luaState, [](lua_State* luaState)->int
+		{
+			int argCount = lua_gettop(luaState);
+
+			if (argCount == 2)
+			{
+				std::string objectType = luaL_checkstring(luaState, 1);
+				std::string objectId = luaL_checkstring(luaState, 2);
+
+				CreateGameObject* command = new CreateGameObject(objectId);
+
+				CommandManager::GetInstance().AddCommand(command);
+
+				return 0;
+
+			}
+			else if (argCount >= 3)
+			{
+				std::string objectType = luaL_checkstring(luaState, 1);
+				std::string objectId = luaL_checkstring(luaState, 2);
+				int type = luaL_checknumber(luaState, 3);
+
+				Debugger::Print("Type :", objectType);
+				if (objectType == "Asteroid")
+				{
+					AsteroidManager::GetInstance().SpawnAsteroid(objectId, type);
+				}
+
+				CreateGameObject* command = new CreateGameObject(objectId);
+
+				CommandManager::GetInstance().AddCommand(command);
+
+				return 0;
+
+			}
+			return 0;
+		});
+
+	lua_setglobal(luaState, "SpawnGameObject");
+
+
+#pragma endregion
+	
 
 #pragma region FollowObject
 
