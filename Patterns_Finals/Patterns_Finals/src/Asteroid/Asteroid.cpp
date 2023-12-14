@@ -11,6 +11,13 @@ void Asteroid::CreateInstance(Model& model)
 	this->model->CopyFromModel(model);
 	phyObj->Initialize(this->model, SPHERE, DYNAMIC, TRIGGER, true);
 	phyObj->userData = this;
+	phyObj->AssignCollisionCallback([this](PhysicsObject* other)
+		{
+			Entity* entity = (Entity*)other->userData;
+
+			//Debugger::Print("Tag : ", entity->tag);
+		});
+
 }
 
 void Asteroid::Start()

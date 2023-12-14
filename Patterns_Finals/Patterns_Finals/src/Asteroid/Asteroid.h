@@ -12,7 +12,6 @@ public:
 	void CreateInstance(Model& model);
 
 
-private:
 	// Inherited via Entity
 	void Start() override;
 	void Update(float deltaTime) override;

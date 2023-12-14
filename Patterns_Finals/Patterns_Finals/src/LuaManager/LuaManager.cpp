@@ -344,7 +344,6 @@ void LuaManager::SetBindingsToState(lua_State* luaState)
 
 #pragma endregion
 
-
 #pragma region SpawnGameObject
 
 	lua_pushcfunction(luaState, [](lua_State* luaState)->int
@@ -377,7 +376,7 @@ void LuaManager::SetBindingsToState(lua_State* luaState)
 				Debugger::Print("Type :", objectType);
 				if (objectType == "Asteroid")
 				{
-					AsteroidManager::GetInstance().SpawnAsteroid(objectId, type);
+					GameObject* asteroid = AsteroidManager::GetInstance().SpawnAsteroid(objectId, type);
 				}
 
 				CreateGameObject* command = new CreateGameObject(objectId);
@@ -394,7 +393,6 @@ void LuaManager::SetBindingsToState(lua_State* luaState)
 
 
 #pragma endregion
-	
 
 #pragma region FollowObject
 

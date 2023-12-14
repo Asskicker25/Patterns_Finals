@@ -14,10 +14,12 @@ AsteroidManager& AsteroidManager::GetInstance()
 	return instance;
 }
 
-void AsteroidManager::SpawnAsteroid(const std::string& id, int type)
+Asteroid* AsteroidManager::SpawnAsteroid(const std::string& id, int type)
 {
 	Asteroid* asteroid = factory->CreateAsteroid(id, type);
 	LuaManager::GetInstance().AddGameObject(id, asteroid);
+
+	return asteroid;
 }
 
 void AsteroidManager::Start()

@@ -1,6 +1,6 @@
 
-scene1Time = 0 --7
-scence2Time = 0 --5
+scene1Time = 7 --7
+scence2Time = 5 --5
 
 function Scene1()
 
@@ -206,32 +206,64 @@ function Scene3()
     BindGameObject("Camera")
     MoveWithTime(-40,0,2,0)
 
-    SpawnGameObject("Fighter","Fighter1");
-    BindGameObject("Fighter1")
+    WaitForSeconds(0.1)
+
+    SpawnGameObject("Fighter","Fighter21");
+    BindGameObject("Fighter21")
     MoveWithTime(-41,1,1, 0)
     FollowCurveWithTime(5).AddPoint(-40.5,1,1,  0.5,-1.1,0)
     .AddPoint(-39.67,-0.075,3,   -0.5,0,-1)
 
-    SpawnGameObject("Fighter","Fighter2");
-    BindGameObject("Fighter2")
+    SpawnGameObject("Fighter","Fighter22");
+    BindGameObject("Fighter22")
     MoveWithTime(-40.2,1,0, 0)
-    FollowObject("Fighter1",6).SetFollowDistance(0.2).SetFollowOffset(0.2,0,0).SetMaxSpeed(20)
+    FollowObject("Fighter21",6).SetFollowDistance(0.2).SetFollowOffset(0.2,0,0).SetMaxSpeed(20)
 
-    SpawnGameObject("Fighter","Fighter3");
-    BindGameObject("Fighter3")
+    SpawnGameObject("Fighter","Fighter23");
+    BindGameObject("Fighter23")
     MoveWithTime(-40.8,1,0, 0)
-    FollowObject("Fighter1",6).SetFollowDistance(0.2).SetFollowOffset(-0.2,0,0).SetMaxSpeed(20)
+    FollowObject("Fighter21",6).SetFollowDistance(0.2).SetFollowOffset(-0.2,0,0).SetMaxSpeed(20)
 
-    SpawnGameObject("Fighter","Fighter4");
-    BindGameObject("Fighter4")
+    SpawnGameObject("Fighter","Fighter24");
+    BindGameObject("Fighter24")
     MoveWithTime(-40.8,1,-0.3, 0)
-    FollowObject("Fighter1",6).SetFollowDistance(0.2).SetFollowOffset(-0.1,0.1,-0.4).SetMaxSpeed(20)
+    FollowObject("Fighter21",6).SetFollowDistance(0.2).SetFollowOffset(-0.1,0.1,-0.4).SetMaxSpeed(20)
 
     EndCommandGroup("Init3")
+
+
+    BeginCommandGroup("Collision1","Parallel")
+
+    WaitForSeconds(scene1Time + scence2Time)
+
+    SpawnGameObject("Asteroid","AsteroidCollide",3)
+    BindGameObject("AsteroidCollide")
+
+    MoveWithTime(-43.2,0.25,1, 0)
+
+
+    WaitForSeconds(0.01)
+    MoveWithTime(-36.2,0.25,1, 6.5)
+
+    
+    EndCommandGroup("Collision1")
+
+    BindGameObject("Fighter24")
+    BeginCommandGroup("Explosion","Parallel").SetCollisionCondition("AsteroidCollide")
+
+    ScaleWithTime(0,0,0,0.1)
+    SpawnGameObject("Asteroid","ExplodeSphere",4)
+    BindGameObject("ExplodeSphere")
+    MoveWithTime(-40.2,0.25,1, 0)
+    ScaleWithTime(.1,.1,.1,1)
+
+    EndCommandGroup("Collision1")
+
+
 
 end
 
 
---Scene1()
---Scene2()
+Scene1()
+Scene2()
 Scene3()

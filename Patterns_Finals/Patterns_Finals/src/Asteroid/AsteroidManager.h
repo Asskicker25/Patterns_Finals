@@ -13,7 +13,7 @@ public:
 
 	static AsteroidManager& GetInstance();
 
-	void SpawnAsteroid(const std::string& id, int type);
+	Asteroid* SpawnAsteroid(const std::string& id, int type);
 
 
 private:

@@ -20,6 +20,7 @@ private:
 	Model* asteroid2;
 	Model* asteroid3;
 	Model* asteroid4;
+	Model* explodeSphere;
 
 	glm::vec4 asteroidColor = glm::vec4(0.5f, 0.5f, 0.5f, 1.0f);
 
