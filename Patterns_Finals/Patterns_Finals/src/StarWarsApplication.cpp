@@ -13,8 +13,8 @@ void StarWarsApplication::SetUp()
 	physicsEngine.gravity.y = 0;
 	moveSpeed = 1;
 
-	stopKeyCallback = true;
-	stopMouseCallback = true;
+	stopKeyCallback = false;
+	stopMouseCallback = false;
 
 	RendererInstance::GetInstance().SetRenderer(&renderer);
 
@@ -116,8 +116,9 @@ void StarWarsApplication::ToggleFreeCam()
 {
 	isFreeCam = !isFreeCam;
 
-	stopKeyCallback = !isFreeCam;
-	stopMouseCallback = !isFreeCam;
+	/*stopKeyCallback = !isFreeCam;
+	stopMouseCallback = !isFreeCam;*/
+
 
 	if (isFreeCam)
 	{

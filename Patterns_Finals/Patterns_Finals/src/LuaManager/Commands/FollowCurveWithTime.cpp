@@ -32,8 +32,6 @@ void FollowCurveWithTime::Update()
 
 	if (currentPointIndex >= curve->GetCurveCount()) return;
 
-
-
 	deltaTime = Timer::GetInstance().deltaTime;
 
 	timeStep += deltaTime / lerpTime;
@@ -64,7 +62,7 @@ void FollowCurveWithTime::Update()
 		lerpValue = timeStep;
 	}
 
-	
+
 
 	gameObject->GetTransform()->SetPosition(
 		Lerp(startPos.point, targetPos.point, lerpValue)
@@ -73,13 +71,25 @@ void FollowCurveWithTime::Update()
 	glm::vec3 rotationOffset = Lerp(startPos.rotationOffset, targetPos.rotationOffset, lerpValue);
 
 	curve->DrawCurve();
+	Debugger::Print("Rotation		:", gameObject->GetTransform()->rotation);
 
 	if (!lookAtTangent) return;
 
-	gameObject->GetTransform()->SetOrientationFromDirections(up, right);
-	gameObject->GetTransform()->SetRotation(gameObject->GetTransform()->rotation + lookAtOffset + rotationOffset);
+	if (currentPointIndex >= curve->GetCurveCount() - 2) return;
 
+	gameObject->GetTransform()->SetOrientationFromDirections(up, right);
+	glm::vec3 totalRotation;
+	totalRotation.x = gameObject->GetTransform()->rotation.x + lookAtOffset.x + rotationOffset.x;
+	totalRotation.y = gameObject->GetTransform()->rotation.y + lookAtOffset.y + rotationOffset.y;
+	totalRotation.z = gameObject->GetTransform()->rotation.z + lookAtOffset.z + rotationOffset.z;
+
+	Debugger::Print("LookAtOffset   :", lookAtOffset);
 	Debugger::Print("RotationOffset :", rotationOffset);
+	Debugger::Print("Total			:", totalRotation);
+	std::cout << std::endl;
+
+	gameObject->GetTransform()->SetRotation(totalRotation);
+
 }
 
 void FollowCurveWithTime::EndCommand()
@@ -119,6 +129,7 @@ void FollowCurveWithTime::SetBezierCurve(CubicBezierCurve* curve)
 
 void FollowCurveWithTime::AddPoint(const glm::vec3& point, const glm::vec3& controlPoint, const glm::vec3& rotationOffset)
 {
+	if (curve == nullptr) return;
 	curve->AddPoint(CubicBezierPoint{ point,controlPoint, rotationOffset });
 }
 

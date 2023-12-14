@@ -45,7 +45,7 @@ void AsteroidFactory::AssignComponents(Renderer* renderer, Shader* shader, Physi
 
 void AsteroidFactory::CacheAsteroidModels()
 {
-	asteroid1 = new Model("Assets/Models/Asteroids/Asteroid_001.ply");
+	/*asteroid1 = new Model("Assets/Models/Asteroids/Asteroid_001.ply");
 	asteroid2 = new Model("Assets/Models/Asteroids/Asteroid_007.ply");
 	asteroid3 = new Model("Assets/Models/Asteroids/asteroid_group_375084_verts.ply");
 
@@ -55,6 +55,6 @@ void AsteroidFactory::CacheAsteroidModels()
 
 	asteroid1->meshes[0]->material->AsMaterial()->SetBaseColor(asteroidColor);
 	asteroid2->meshes[0]->material->AsMaterial()->SetBaseColor(asteroidColor);
-	asteroid3->meshes[0]->material->AsMaterial()->SetBaseColor(asteroidColor);
+	asteroid3->meshes[0]->material->AsMaterial()->SetBaseColor(asteroidColor);*/
 
 }
