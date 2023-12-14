@@ -20,7 +20,7 @@ void StarWarsApplication::SetUp()
 
 	camera->InitializeCamera(PERSPECTIVE, windowWidth, windowHeight, 0.1f, 1000.0f, 65.0f);
 
-	camera->transform.SetPosition(glm::vec3(0, 0, 0));
+	camera->transform.SetPosition(glm::vec3(0, 0, 3));
 	camera->transform.SetRotation(glm::vec3(0, 0, 0));
 
 	EntityManager::GetInstance().AddToRendererAndPhysics(&renderer, &defShader, &physicsEngine);
