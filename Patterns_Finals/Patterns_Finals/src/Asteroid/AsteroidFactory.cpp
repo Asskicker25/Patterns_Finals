@@ -14,6 +14,8 @@ Asteroid* AsteroidFactory::CreateAsteroid(const std::string& id, int type)
 	{
 	case 0:
 		asteroid->CreateInstance(*asteroid1);
+		asteroid->GetTransform()->SetPosition(glm::vec3(-64, -1.0, 0));
+		
 		break;
 
 	case 1:

@@ -1,7 +1,7 @@
 
-scene1Time = 0  --7
-scence2Time = 0 --5
-scene3Time = 0   --5
+scene1Time = 7  --7
+scence2Time = 5 --5
+scene3Time = 5   --5
 
 function Scene1()
 
@@ -353,10 +353,9 @@ function Scene4()
 
     BindGameObject("Fighter43")
     BeginCommandGroup("FighterDown", "Parallel").SetCollisionCondition("Asteroid43")
-    BindGameObject("Fighter43")
     WaitForSeconds(0.1)
-    MoveWithTime(-61.8,-0.9,1.5, 2)    
-    RotateWithTime(10,10,360, 2)
+    MoveWithTime(-61.8,-0.9,1.5, 4)    
+    RotateWithTime(10,10,360, 4)
 
     EndCommandGroup("FighterDown")
     
@@ -364,7 +363,7 @@ function Scene4()
 end
 
 
---Scene1()
---Scene2()
---Scene3()
+Scene1()
+Scene2()
+Scene3()
 Scene4()
