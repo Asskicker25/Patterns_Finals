@@ -12,6 +12,7 @@
 #include "Commands/LookAt.h"
 #include "LuaBindingFunction.h"
 #include "../Asteroid/AsteroidManager.h"
+#include "../Fighters/FighterManager.h"
 
 LuaManager::LuaManager()
 {
@@ -354,6 +355,11 @@ void LuaManager::SetBindingsToState(lua_State* luaState)
 			{
 				std::string objectType = luaL_checkstring(luaState, 1);
 				std::string objectId = luaL_checkstring(luaState, 2);
+
+				if (objectType == "Fighter")
+				{
+					FighterManager::GetInstance().SpawnFighter(objectId);
+				}
 
 				CreateGameObject* command = new CreateGameObject(objectId);
 

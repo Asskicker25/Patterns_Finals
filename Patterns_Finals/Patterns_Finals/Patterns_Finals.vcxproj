@@ -137,6 +137,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Fighters\FighterManager.cpp" />
+    <ClCompile Include="src\Fighters\FighterFactory.cpp" />
+    <ClCompile Include="src\Fighters\Fighter.cpp" />
     <ClCompile Include="src\LuaManager\Commands\ScaleWithTime.cpp" />
     <ClCompile Include="src\Asteroid\AsteroidManager.cpp" />
     <ClCompile Include="src\Asteroid\AsteroidFactory.cpp" />
@@ -165,6 +168,9 @@
     <ClCompile Include="src\Utilities\RendererInstance.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Fighters\FighterManager.h" />
+    <ClInclude Include="src\Fighters\FighterFactory.h" />
+    <ClInclude Include="src\Fighters\Fighter.h" />
     <ClInclude Include="src\LuaManager\Commands\ScaleWithTime.h" />
     <ClInclude Include="src\Asteroid\AsteroidManager.h" />
     <ClInclude Include="src\Asteroid\AsteroidFactory.h" />

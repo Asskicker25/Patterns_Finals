@@ -15,7 +15,7 @@ void FollowObject::StartCommand()
 	timeStep = 0;
 
 	glm::vec3 diff = targetObject->GetTransform()->position - followObject->GetTransform()->position;
-	followDistance = glm::length(diff);
+	//followDistance = glm::length(diff);
 
 	startDir = glm::normalize(diff);
 
