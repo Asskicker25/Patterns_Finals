@@ -137,6 +137,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\LuaManager\Commands\ScaleWithTime.cpp" />
     <ClCompile Include="src\Asteroid\AsteroidManager.cpp" />
     <ClCompile Include="src\Asteroid\AsteroidFactory.cpp" />
     <ClCompile Include="src\Asteroid\Asteroid.cpp" />
@@ -164,6 +165,7 @@
     <ClCompile Include="src\Utilities\RendererInstance.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\LuaManager\Commands\ScaleWithTime.h" />
     <ClInclude Include="src\Asteroid\AsteroidManager.h" />
     <ClInclude Include="src\Asteroid\AsteroidFactory.h" />
     <ClInclude Include="src\Asteroid\Asteroid.h" />

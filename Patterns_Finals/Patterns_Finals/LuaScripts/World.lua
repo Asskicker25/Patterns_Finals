@@ -96,6 +96,59 @@ function Scene1()
     EndCommandGroup("Asteroid Spawn")
 end
 
+function Scene2()
+
+    BeginCommandGroup("CameraInit","Parallel")
+
+        BindGameObject("Falcon")
+        MoveWithTime(4,-1,0,0)
+        RotateWithTime(0,-80,-90,0)
+        ScaleWithTime(0.002,0.002,0.002,0)
+
+        BindGameObject("Camera")
+        MoveWithTime(0,0,5,0)
+
+    EndCommandGroup("CameraInit")
 
 
-Scene1()
+    BeginCommandGroup("AsteroidSpawn2", "Parallel")
+
+    SpawnGameObject("Asteroid","Asteroid01" , 3);
+    BindGameObject("Asteroid01")
+    MoveWithTime(0,0,4.6,0)
+    RotateWithTime(70,90,0,0)
+
+    WaitForSeconds(0.01)
+
+    RotateWithTime(360,180,0,8)
+    MoveWithSpeed(0,0,-5,0.01)
+
+    EndCommandGroup("AsteroidSpawn2")
+
+    BeginCommandGroup("Falcon2","Parallel")
+
+        BindGameObject("Falcon")
+        RotateWithTime(90,180,-80,0)
+
+        WaitForSeconds(0.01)
+        FollowCurveWithTime(5).AddPoint(0,0,2,  1,0,1)
+        .AddPoint(0,0,4,   1,0,-1)
+        .AddPoint(-2,0,6,  -3,0,5)
+        RotateWithTime(90,180,-90,2)
+
+        WaitForSeconds(1.5)
+
+        RotateWithTime(90,180,-180,1)
+
+        WaitForSeconds(0.9)
+        RotateWithTime(90,180,-270,1)
+
+
+    EndCommandGroup("Falcon2")
+
+
+    
+end
+
+Scene2()
+--Scene1()

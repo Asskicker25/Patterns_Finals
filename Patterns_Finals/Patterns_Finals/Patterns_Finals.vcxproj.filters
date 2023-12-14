@@ -90,6 +90,9 @@
     <ClCompile Include="src\Asteroid\AsteroidManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\LuaManager\Commands\ScaleWithTime.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\StarWarsApplication.h">
@@ -186,6 +189,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Asteroid\AsteroidManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\LuaManager\Commands\ScaleWithTime.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

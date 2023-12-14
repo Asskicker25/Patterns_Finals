@@ -5,6 +5,7 @@
 #include "Commands/MoveWithSpeed.h"
 #include "Commands/RotateWithTime.h"
 #include "Commands/WaitForSeconds.h"
+#include "Commands/ScaleWithTime.h"
 #include "Commands/FollowCurveWithTime.h"
 #include "Commands/CreateGameObject.h"
 #include "Commands/FollowObject.h"
@@ -274,6 +275,40 @@ void LuaManager::SetBindingsToState(lua_State* luaState)
 		});
 
 	lua_setglobal(luaState, "RotateWithTime");
+
+
+#pragma endregion
+
+#pragma region ScaleWithTime
+
+	lua_pushcfunction(luaState, [](lua_State* luaState)->int
+		{
+			int argCount = lua_gettop(luaState);
+
+			if (argCount >= 4)
+			{
+				glm::vec3 scale;
+				scale.x = luaL_checknumber(luaState, 1);
+				scale.y = luaL_checknumber(luaState, 2);
+				scale.z = luaL_checknumber(luaState, 3);
+
+				float time = luaL_checknumber(luaState, 4);
+
+				BaseCommand* command = new ScaleWithTime(
+					CommandManager::GetInstance().GetBoundGameObject(),
+					scale, time);
+
+				CommandManager::GetInstance().AddCommand(command);
+
+				GetEaseTable(luaState);
+
+				return 1;
+
+			}
+			return 0;
+		});
+
+	lua_setglobal(luaState, "ScaleWithTime");
 
 
 #pragma endregion

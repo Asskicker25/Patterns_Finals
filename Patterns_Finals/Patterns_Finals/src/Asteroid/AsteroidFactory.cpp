@@ -23,7 +23,11 @@ Asteroid* AsteroidFactory::CreateAsteroid(const std::string& id, int type)
 	case 2:
 		asteroid->CreateInstance(*asteroid3);
 		break;
+	case 3:
+		asteroid->CreateInstance(*asteroid4);
+		break;
 	}
+
 
 	asteroid->tag = id;
 
@@ -48,13 +52,16 @@ void AsteroidFactory::CacheAsteroidModels()
 	asteroid1 = new Model("Assets/Models/Asteroids/Asteroid_001.ply");
 	asteroid2 = new Model("Assets/Models/Asteroids/Asteroid_007.ply");
 	asteroid3 = new Model("Assets/Models/Asteroids/asteroid_group_375084_verts.ply");
+	asteroid4 = new Model("Assets/Models/Asteroids/Asteroid_004.ply");
 
 	asteroid1->transform.SetScale(glm::vec3(0.001f));
 	asteroid2->transform.SetScale(glm::vec3(0.001f));
 	asteroid3->transform.SetScale(glm::vec3(0.001f));
+	asteroid4->transform.SetScale(glm::vec3(0.002f));
 
 	asteroid1->meshes[0]->material->AsMaterial()->SetBaseColor(asteroidColor);
 	asteroid2->meshes[0]->material->AsMaterial()->SetBaseColor(asteroidColor);
 	asteroid3->meshes[0]->material->AsMaterial()->SetBaseColor(asteroidColor);
+	asteroid4->meshes[0]->material->AsMaterial()->SetBaseColor(asteroidColor);
 
 }
