@@ -155,6 +155,25 @@ static int SetFollowDistance(lua_State* luaState)
 	return 0;
 
 }
+static int SetSimpleFollow(lua_State* luaState)
+{
+	FollowObject* command = dynamic_cast<FollowObject*>
+		(CommandManager::GetInstance().currentCommand);
+
+	int argCount = lua_gettop(luaState);
+
+	if (argCount >= 1)
+	{
+		int state = luaL_checknumber(luaState, 1);
+
+		command->SetSimpleFollow(state);
+
+		GetFollowObjectTable(luaState);
+		return 1;
+	}
+	return 0;
+
+}
 static int SetMaxSpeed(lua_State* luaState)
 {
 	FollowObject* command = dynamic_cast<FollowObject*>
@@ -319,6 +338,9 @@ void GetFollowObjectTable(lua_State* luaState)
 
 	lua_pushcfunction(luaState, SetFollowOffset);
 	lua_setfield(luaState, -2, "SetFollowOffset");
+
+	lua_pushcfunction(luaState, SetSimpleFollow);
+	lua_setfield(luaState, -2, "SetSimpleFollow");
 
 	lua_pushcfunction(luaState, SetAccelerationRange);
 	lua_setfield(luaState, -2, "SetAccelerationRange");

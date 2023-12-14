@@ -2,7 +2,9 @@
 #include "Utilities/RendererInstance.h"
 #include "EntityManager/EntityManager.h"
 #include "Falcon/Falcon.h"
-
+#include "LuaManager/LuaManager.h"
+#include "Camera/CameraObject.h"
+#include "LuaManager/CommandManager/CommandManager.h"
 
 void StarWarsApplication::SetUp()
 {
@@ -14,7 +16,7 @@ void StarWarsApplication::SetUp()
 
 	camera->InitializeCamera(PERSPECTIVE, windowWidth, windowHeight, 0.1f, 1000.0f, 65.0f);
 
-	camera->transform.SetPosition(glm::vec3(0, 0, 3));
+	camera->transform.SetPosition(glm::vec3(0, 0, 0));
 	camera->transform.SetRotation(glm::vec3(0, 0, 0));
 
 	EntityManager::GetInstance().AddToRendererAndPhysics(&renderer, &defShader, &physicsEngine);
@@ -43,20 +45,28 @@ void StarWarsApplication::SetUp()
 
 	Light* dirLight = new Light();
 	dirLight->InitializeLight(lightModel, Directional);
-	dirLight->intensity = 1.5f;
-	dirLight->transform->SetRotation(glm::vec3(-30, 180, 0));
+	dirLight->intensity = 0.7f;
+	dirLight->transform->SetRotation(glm::vec3(-30, 0, 0));
 
 	lightManager.AddLight(dirLight);
 
 #pragma endregion
 
+	CameraObject* cameraObject = new CameraObject();
+	cameraObject->camera = camera;
 	
 	Falcon* falcon = new Falcon();
+	LuaManager::GetInstance().ExecuteGlobalState();
+
+	EntityManager::GetInstance().Start();
 
 }
 
 void StarWarsApplication::PreRender()
 {
+	physicsEngine.Update(Timer::GetInstance().deltaTime);
+	EntityManager::GetInstance().Update(Timer::GetInstance().deltaTime);
+	CommandManager::GetInstance().Update(Timer::GetInstance().deltaTime);
 }
 
 void StarWarsApplication::PostRender()
@@ -65,6 +75,19 @@ void StarWarsApplication::PostRender()
 
 void StarWarsApplication::ProcessInput(GLFWwindow* window)
 {
+	std::stringstream ssTitle;
+	ssTitle << "Camera Pos : "
+		<< camera->transform.position.x << " , "
+		<< camera->transform.position.y << " , "
+		<< camera->transform.position.z
+		<< "  Camera Pitch : "
+		<< camera->transform.rotation.x
+		<< "  Camera Yaw : "
+		<< camera->transform.rotation.y;
+
+	std::string theTitle = ssTitle.str();
+
+	glfwSetWindowTitle(window, theTitle.c_str());
 }
 
 void StarWarsApplication::KeyCallBack(GLFWwindow* window, int& key, int& scancode, int& action, int& mods)

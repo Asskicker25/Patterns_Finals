@@ -7,11 +7,18 @@ FollowObject::FollowObject(GameObject* followObject, GameObject* targetObject, f
 	this->followObject = followObject;
 	this->targetObject = targetObject;
 	this->time = time;
+	
 }
 
 void FollowObject::StartCommand()
 {
 	timeStep = 0;
+
+	glm::vec3 diff = targetObject->GetTransform()->position - followObject->GetTransform()->position;
+	followDistance = glm::length(diff);
+
+	startDir = glm::normalize(diff);
+
 	sqDeacceleration = deaccelerationRange * deaccelerationRange;
 	sqAcceleration = accelerationRange * accelerationRange;
 }
@@ -26,9 +33,19 @@ void FollowObject::Update()
 	targetPos = targetObject->GetTransform()->position + followOffset;
 
 	glm::vec3 diff = targetPos - startPos;
-	glm::vec3 dir = glm::normalize(diff);
 
-	targetPos -= dir * followDistance;
+	if (simpleFollow)
+	{
+		targetPos -= startDir * followDistance;
+		//followObject->GetTransform()->SetPosition(targetPos);
+
+	}
+	else
+	{
+		glm::vec3 dir = glm::normalize(diff);
+		targetPos -= dir * followDistance;
+	}
+
 
 	diff = targetPos - startPos;
 	sqDist = glm::dot(diff, diff);
@@ -36,13 +53,13 @@ void FollowObject::Update()
 
 
 	float remapedValue;
-	if (sqDeacceleration != 0 && sqDist <= sqDeacceleration)
-	{
-		remapedValue = remap(sqDist, 0, sqDeacceleration, 0, 1);
-	}
-	else if (sqAcceleration != 0 && sqDist >= sqAcceleration)
+	if (sqAcceleration != 0 && sqDist >= sqAcceleration)
 	{
 		remapedValue = 1;
+	}
+	else if (sqDeacceleration != 0 && sqDist <= sqDeacceleration)
+	{
+		remapedValue = remap(sqDist, 0, sqDeacceleration, 0, 1);
 	}
 	else if(sqDeacceleration != 0 && sqAcceleration != 0)
 	{
@@ -97,5 +114,10 @@ void FollowObject::SetAccelerationRange(const float& range)
 void FollowObject::SetDeaccelerationRange(const float& range)
 {
 	deaccelerationRange = range;
+}
+
+void FollowObject::SetSimpleFollow(bool state)
+{
+	simpleFollow = state;
 }
 

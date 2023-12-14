@@ -137,6 +137,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Camera\CameraObject.cpp" />
     <ClCompile Include="src\Falcon\Falcon.cpp" />
     <ClCompile Include="src\ApplicationMain.cpp" />
     <ClCompile Include="src\EntityManager\Entity.cpp" />
@@ -160,6 +161,7 @@
     <ClCompile Include="src\Utilities\RendererInstance.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Camera\CameraObject.h" />
     <ClInclude Include="src\Falcon\Falcon.h" />
     <ClInclude Include="src\EntityManager\Entity.h" />
     <ClInclude Include="src\EntityManager\EntityManager.h" />
