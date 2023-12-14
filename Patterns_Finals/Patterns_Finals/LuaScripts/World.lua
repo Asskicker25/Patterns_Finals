@@ -1,6 +1,6 @@
 
-scene1Time = 7 --7
-scence2Time = 5 --5
+scene1Time = 0 --7
+scence2Time = 0 --5
 
 function Scene1()
 
@@ -194,23 +194,44 @@ end
 
 function Scene3()
 
-    BeginCommandGroup("CameraInit3", "Parallel")
+    BeginCommandGroup("Init3", "Parallel")
 
     WaitForSeconds(scene1Time + scence2Time)
 
     BindGameObject("Falcon")
-    MoveWithTime(-40,-1,0,0)
+    MoveWithTime(-40,2,0,0)
     RotateWithTime(0,-80,-90,0)
     ScaleWithTime(0.002,0.002,0.002,0)
     
     BindGameObject("Camera")
-    MoveWithTime(-40,0,5,0)
+    MoveWithTime(-40,0,2,0)
 
-    EndCommandGroup("CameraInit3")
+    SpawnGameObject("Fighter","Fighter1");
+    BindGameObject("Fighter1")
+    MoveWithTime(-41,1,1, 0)
+    FollowCurveWithTime(5).AddPoint(-40.5,1,1,  0.5,-1.1,0)
+    .AddPoint(-39.67,-0.075,3,   -0.5,0,-1)
+
+    SpawnGameObject("Fighter","Fighter2");
+    BindGameObject("Fighter2")
+    MoveWithTime(-40.2,1,0, 0)
+    FollowObject("Fighter1",6).SetFollowDistance(0.2).SetFollowOffset(0.2,0,0).SetMaxSpeed(20)
+
+    SpawnGameObject("Fighter","Fighter3");
+    BindGameObject("Fighter3")
+    MoveWithTime(-40.8,1,0, 0)
+    FollowObject("Fighter1",6).SetFollowDistance(0.2).SetFollowOffset(-0.2,0,0).SetMaxSpeed(20)
+
+    SpawnGameObject("Fighter","Fighter4");
+    BindGameObject("Fighter4")
+    MoveWithTime(-40.8,1,-0.3, 0)
+    FollowObject("Fighter1",6).SetFollowDistance(0.2).SetFollowOffset(-0.1,0.1,-0.4).SetMaxSpeed(20)
+
+    EndCommandGroup("Init3")
 
 end
 
 
-Scene1()
-Scene2()
+--Scene1()
+--Scene2()
 Scene3()
