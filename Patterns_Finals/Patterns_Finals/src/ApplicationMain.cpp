@@ -2,7 +2,7 @@
 
 int main(int argc, char* argv[])
 {
-	Debugger::print = true;
+	Debugger::print = false;
 
 	StarWarsApplication application;
 

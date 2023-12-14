@@ -83,10 +83,10 @@ void FollowCurveWithTime::Update()
 	totalRotation.y = gameObject->GetTransform()->rotation.y + lookAtOffset.y + rotationOffset.y;
 	totalRotation.z = gameObject->GetTransform()->rotation.z + lookAtOffset.z + rotationOffset.z;
 
-	Debugger::Print("LookAtOffset   :", lookAtOffset);
+	/*Debugger::Print("LookAtOffset   :", lookAtOffset);
 	Debugger::Print("RotationOffset :", rotationOffset);
 	Debugger::Print("Total			:", totalRotation);
-	std::cout << std::endl;
+	std::cout << std::endl;*/
 
 	gameObject->GetTransform()->SetRotation(totalRotation);
 
