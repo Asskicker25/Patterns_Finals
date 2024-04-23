@@ -70,7 +70,7 @@ void FollowCurveWithTime::Update()
 
 	glm::vec3 rotationOffset = Lerp(startPos.rotationOffset, targetPos.rotationOffset, lerpValue);
 
-	curve->DrawCurve();
+	//curve->DrawCurve();
 	//Debugger::Print("Rotation		:", gameObject->GetTransform()->rotation);
 
 	if (!lookAtTangent) return;

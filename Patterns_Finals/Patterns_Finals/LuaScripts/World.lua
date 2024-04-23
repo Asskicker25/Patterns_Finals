@@ -1,8 +1,8 @@
 
-scene1Time = 7 --7
+scene1Time = 6 --7
 scence2Time = 5 --5
 scene3Time = 5   --5
-scene4Time = 5  --6
+scene4Time = 4.5  --6
 
 
 function Scene1()
@@ -12,6 +12,8 @@ function Scene1()
         BindGameObject("Falcon")
         MoveWithTime(4,-1,0,0)
         RotateWithTime(0,-80,-90,0)
+
+        WaitForSeconds(0.5)
 
         BindGameObject("Camera")
         MoveWithTime(0,0,5,0)
@@ -110,6 +112,8 @@ function Scene2()
         RotateWithTime(0,-80,-90,0)
         ScaleWithTime(0.002,0.002,0.002,0)
 
+        WaitForSeconds(0.5)
+
         BindGameObject("Camera")
         MoveWithTime(-20,0,5,0)
 
@@ -206,8 +210,7 @@ function Scene3()
     RotateWithTime(0,-80,-90,0)
     ScaleWithTime(0.002,0.002,0.002,0)
     
-    BindGameObject("Camera")
-    MoveWithTime(-40,0,2,0)
+   
 
     WaitForSeconds(0.1)
 
@@ -231,6 +234,10 @@ function Scene3()
     BindGameObject("Fighter24")
     MoveWithTime(-40.8,1,-0.3, 0)
     FollowObject("Fighter21",6).SetFollowDistance(0.2).SetFollowOffset(-0.1,0.1,-0.4).SetMaxSpeed(20)
+
+    WaitForSeconds(0.5)
+    BindGameObject("Camera")
+    MoveWithTime(-40,0,2,0)
 
     EndCommandGroup("Init3")
 
@@ -276,6 +283,8 @@ function Scene4()
     MoveWithTime(-61.5,1.2,0,0)
     RotateWithTime( 0,0,0,0)
     ScaleWithTime(0.001,0.001,0.001,0)
+
+    WaitForSeconds(0.5)
     
     BindGameObject("Camera")
     MoveWithTime(-60,0,2,0)
@@ -304,7 +313,7 @@ function Scene4()
     SpawnGameObject("Asteroid","Asteroid43",0)
     BindGameObject("Asteroid43")
     MoveWithTime(-64,-1.0,0,0)
-    ScaleWithTime(0.0001,0.0001,0.0001,0)
+    ScaleWithTime(0.0002,0.0002,0.0002,0)
 
 
     WaitForSeconds(0.1)
@@ -369,6 +378,8 @@ function Scene5()
     BeginCommandGroup("Init4", "Parallel")
 
     WaitForSeconds(scene1Time + scence2Time + scene3Time + scene4Time)
+
+    WaitForSeconds(0.5)
 
     BindGameObject("Camera")
     MoveWithTime(-79.75,0.3,2.2,0)
